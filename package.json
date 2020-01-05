@@ -1,0 +1,42 @@
+{
+  "name": "@crazyorr/loan",
+  "version": "0.0.1",
+  "description": "Interest calculation for loans.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/**/*.js",
+    "dist/**/*.d.ts"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "gulp compile"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CrazyOrr/loan-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/CrazyOrr/loan-js/issues"
+  },
+  "homepage": "https://github.com/CrazyOrr/loan-js",
+  "keywords": [
+    "interest",
+    "loan",
+    "calculator"
+  ],
+  "author": {
+    "name": "Lei Wang",
+    "email": "wanglei021212@gmail.com",
+    "url": "https://github.com/CrazyOrr"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-if": "^2.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-typescript": "^5.0.1",
+    "gulp-uglify": "^3.0.2",
+    "typescript": "^3.7.2"
+  }
+}
