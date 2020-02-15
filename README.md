@@ -1,3 +1,4 @@
+# loan-js
 Interest calculation for loans.
 
 ## Usage
