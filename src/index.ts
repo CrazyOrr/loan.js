@@ -8,20 +8,20 @@ export abstract class Loan {
      * 构造贷款
      * @param principalAmount 本金金额
      * @param rate 利率
-     * @param rateFrequency 利率频率(日/月/年)
+     * @param rateType 利率类型(日/月/年)
      * @param term 期限
      * @param termUnit 期限单位(日/月/年)
      */
     protected constructor(protected principalAmount: number,
                           protected rate: number,
-                          protected rateFrequency: Frequency,
+                          protected rateType: Frequency,
                           protected term: number,
                           protected termUnit: TermUnit
     ) {
         if (!Loan.validatePrincipalAmount(principalAmount)) {
             throw new IllegalArgumentException("Principal sum must > 0");
         }
-        if (!Loan.validateRpa(rate)) {
+        if (!Loan.validateRate(rate)) {
             throw new IllegalArgumentException("Rate of return must > 0");
         }
         if (!Loan.validateTerm(term)) {
@@ -44,7 +44,7 @@ export abstract class Loan {
     /**
      * 验证利率
      */
-    static validateRpa(rate: number) {
+    static validateRate(rate: number) {
         return rate > 0;
     }
 
@@ -65,33 +65,33 @@ export class LumpSumLoan extends Loan {
      * 构造到期还本付息贷款
      * @param principalAmount 本金金额
      * @param rate 利率
-     * @param rateFrequency 利率频率(日/月/年)
+     * @param rateType 利率类型(日/月/年)
      * @param term 期限
      * @param termUnit 期限单位(日/月/年)
      */
     constructor(principalAmount: number,
                 rate: number,
-                rateFrequency: Frequency,
+                rateType: Frequency,
                 term: number,
                 termUnit: TermUnit) {
-        super(principalAmount, rate, rateFrequency, term, termUnit);
+        super(principalAmount, rate, rateType, term, termUnit);
     }
 
     calculateInterest(): Repayment {
-        let convertToRateFrequency;
+        let convertToRateType;
         switch (this.termUnit) {
             case TermUnit.DAY:
-                convertToRateFrequency = Frequency.DAILY;
+                convertToRateType = Frequency.DAILY;
                 break;
             case TermUnit.MONTH:
-                convertToRateFrequency = Frequency.MONTHLY;
+                convertToRateType = Frequency.MONTHLY;
                 break;
             case TermUnit.YEAR:
             default:
-                convertToRateFrequency = Frequency.YEARLY;
+                convertToRateType = Frequency.YEARLY;
                 break;
         }
-        let interestAmount = this.principalAmount * convertRate(this.rate, this.rateFrequency, convertToRateFrequency) * this.term;
+        let interestAmount = this.principalAmount * convertRate(this.rate, this.rateType, convertToRateType) * this.term;
         return new Repayment(this.principalAmount, interestAmount);
     }
 }
@@ -104,7 +104,7 @@ abstract class InstallmentLoan extends Loan {
      * 构造分期贷款
      * @param principalAmount 本金金额
      * @param rate 利率
-     * @param rateFrequency 利率频率(日/月/年)
+     * @param rateType 利率类型(日/月/年)
      * @param term 期限
      * @param termUnit 期限单位(日/月/年)
      * @param repaymentFrequency 还款频率(日/月/年)
@@ -112,12 +112,12 @@ abstract class InstallmentLoan extends Loan {
     protected constructor(
         principalAmount: number,
         rate: number,
-        rateFrequency: Frequency,
+        rateType: Frequency,
         term: number,
         termUnit: TermUnit,
         private repaymentFrequency: Frequency
     ) {
-        super(principalAmount, rate, rateFrequency, term, termUnit);
+        super(principalAmount, rate, rateType, term, termUnit);
 
         // if (!repaymentFrequency.isTermUnitSupported(termUnit)) {
         //     switch (repaymentFrequency) {
@@ -156,7 +156,7 @@ abstract class InstallmentLoan extends Loan {
      * 分期每期利率
      */
     protected installmentInterestRate(): number {
-        return convertRate(this.rate, this.rateFrequency, this.repaymentFrequency);
+        return convertRate(this.rate, this.rateType, this.repaymentFrequency);
     }
 }
 
@@ -169,7 +169,7 @@ export class EvenTotalLoan extends InstallmentLoan {
      * 构造等额本息贷款
      * @param principalAmount 本金金额
      * @param rate 利率
-     * @param rateFrequency 利率频率(日/月/年)
+     * @param rateType 利率类型(日/月/年)
      * @param term 期限
      * @param termUnit 期限单位(日/月/年)
      * @param repaymentFrequency 还款频率(日/月/年)
@@ -177,12 +177,12 @@ export class EvenTotalLoan extends InstallmentLoan {
     constructor(
         principalAmount: number,
         rate: number,
-        rateFrequency: Frequency,
+        rateType: Frequency,
         term: number,
         termUnit: TermUnit,
         repaymentFrequency: Frequency
     ) {
-        super(principalAmount, rate, rateFrequency, term, termUnit, repaymentFrequency);
+        super(principalAmount, rate, rateType, term, termUnit, repaymentFrequency);
     }
 
     calculateInterest(): Repayment {
@@ -211,7 +211,7 @@ export class EvenPrincipalLoan extends InstallmentLoan {
      * 构造等额本金贷款
      * @param principalAmount 本金金额
      * @param rate 利率
-     * @param rateFrequency 利率频率(日/月/年)
+     * @param rateType 利率类型(日/月/年)
      * @param term 期限
      * @param termUnit 期限单位(日/月/年)
      * @param repaymentFrequency 还款频率(日/月/年)
@@ -219,12 +219,12 @@ export class EvenPrincipalLoan extends InstallmentLoan {
     constructor(
         principalAmount: number,
         rate: number,
-        rateFrequency: Frequency,
+        rateType: Frequency,
         term: number,
         termUnit: TermUnit,
         repaymentFrequency: Frequency
     ) {
-        super(principalAmount, rate, rateFrequency, term, termUnit, repaymentFrequency);
+        super(principalAmount, rate, rateType, term, termUnit, repaymentFrequency);
     }
 
     calculateInterest(): Repayment {
@@ -251,7 +251,7 @@ export class InterestOnlyOnInstallmentLoan extends InstallmentLoan {
      * 构造先息后本(按期付息)贷款
      * @param principalAmount 本金金额
      * @param rate 利率
-     * @param rateFrequency 利率频率(日/月/年)
+     * @param rateType 利率类型(日/月/年)
      * @param term 期限
      * @param termUnit 期限单位(日/月/年)
      * @param repaymentFrequency 还款频率(日/月/年)
@@ -259,12 +259,12 @@ export class InterestOnlyOnInstallmentLoan extends InstallmentLoan {
     constructor(
         principalAmount: number,
         rate: number,
-        rateFrequency: Frequency,
+        rateType: Frequency,
         term: number,
         termUnit: TermUnit,
         repaymentFrequency: Frequency
     ) {
-        super(principalAmount, rate, rateFrequency, term, termUnit, repaymentFrequency);
+        super(principalAmount, rate, rateType, term, termUnit, repaymentFrequency);
     }
 
     calculateInterest(): Repayment {
