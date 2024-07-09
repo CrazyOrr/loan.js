@@ -1,17 +1,20 @@
 {
   "name": "@crazyorr/loan",
-  "version": "0.1.0",
-  "description": "Interest calculation for loans.",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist/**/*.js",
-    "dist/**/*.d.ts"
-  ],
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "gulp compile"
+  "version": "1.0.0",
+  "description": "Interest calculation for loans",
+  "main": "./dist/loan.js",
+  "module": "./dist/loan.mjs",
+  "types": "./dist/loan.d.ts",
+  "exports": {
+    "types": "./dist/loan.d.ts",
+    "import": "./dist/loan.mjs",
+    "default": "./dist/loan.js"
   },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/CrazyOrr/loan-js.git"
@@ -30,13 +33,46 @@
     "email": "wanglei021212@gmail.com",
     "url": "https://github.com/CrazyOrr"
   },
-  "license": "ISC",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "rimraf dist && tsc && vite build && dts-bundle-generator --config ./dts-bundle-generator.config.ts",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "lint:scripts": "eslint . --ext .ts",
+    "lint:styles": "stylelint ./**/*.{css,scss}",
+    "format:scripts": "prettier . --write",
+    "format:styles": "stylelint ./**/*.{css,scss} --fix",
+    "format": "npm run format:scripts && npm run format:styles",
+    "spelling": "cspell \"**\"",
+    "prepare": "husky install && husky set .husky/pre-commit \"npx lint-staged\" && git add .husky/pre-commit",
+    "uninstall-husky": "npm uninstall husky --no-save && git config --unset core.hooksPath && npx rimraf .husky"
+  },
   "devDependencies": {
-    "gulp": "^4.0.2",
-    "gulp-if": "^2.0.2",
-    "gulp-sourcemaps": "^2.6.5",
-    "gulp-typescript": "^5.0.1",
-    "gulp-uglify": "^3.0.2",
-    "typescript": "^3.7.2"
+    "@types/jsdom": "^21.1.7",
+    "@types/node": "^20.14.10",
+    "@typescript-eslint/eslint-plugin": "^7.16.0",
+    "@typescript-eslint/parser": "^7.16.0",
+    "@vitest/coverage-v8": "^2.0.1",
+    "cspell": "^8.10.4",
+    "dts-bundle-generator": "^9.5.1",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.7",
+    "postcss": "^8.4.39",
+    "postcss-scss": "^4.0.9",
+    "prettier": "^3.3.2",
+    "rimraf": "^6.0.0",
+    "stylelint": "^16.6.1",
+    "stylelint-config-recommended": "^14.0.1",
+    "stylelint-config-sass-guidelines": "^11.1.0",
+    "stylelint-order": "^6.0.4",
+    "stylelint-prettier": "^5.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.3",
+    "vite": "^5.3.3",
+    "vitest": "^2.0.1"
   }
 }

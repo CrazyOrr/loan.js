@@ -1,0 +1,298 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`EvenPrincipalLoan > calculateInterest with rate type of 1, term of 1, term unit of 2, repayment frequency of 2 1`] = `
+InstallmentLoanRepayment {
+  "installmentRepayments": [
+    Repayment {
+      "interest": 120.00000000000001,
+      "principal": 100,
+    },
+  ],
+  "interest": 120.00000000000001,
+  "principal": 100,
+}
+`;
+
+exports[`EvenPrincipalLoan > calculateInterest with rate type of 1, term of 12, term unit of 1, repayment frequency of 2 1`] = `
+InstallmentLoanRepayment {
+  "installmentRepayments": [
+    Repayment {
+      "interest": 120.00000000000001,
+      "principal": 100,
+    },
+  ],
+  "interest": 120.00000000000001,
+  "principal": 100,
+}
+`;
+
+exports[`EvenPrincipalLoan > calculateInterest with rate type of 1, term of 360, term unit of 0, repayment frequency of 2 1`] = `
+InstallmentLoanRepayment {
+  "installmentRepayments": [
+    Repayment {
+      "interest": 120.00000000000001,
+      "principal": 100,
+    },
+  ],
+  "interest": 120.00000000000001,
+  "principal": 100,
+}
+`;
+
+exports[`EvenPrincipalLoan > calculateInterest with rate type of 2, term of 1, term unit of 2, repayment frequency of 2 1`] = `
+InstallmentLoanRepayment {
+  "installmentRepayments": [
+    Repayment {
+      "interest": 10,
+      "principal": 100,
+    },
+  ],
+  "interest": 10,
+  "principal": 100,
+}
+`;
+
+exports[`EvenPrincipalLoan > calculateInterest with rate type of 2, term of 12, term unit of 1, repayment frequency of 2 1`] = `
+InstallmentLoanRepayment {
+  "installmentRepayments": [
+    Repayment {
+      "interest": 10,
+      "principal": 100,
+    },
+  ],
+  "interest": 10,
+  "principal": 100,
+}
+`;
+
+exports[`EvenPrincipalLoan > calculateInterest with rate type of 2, term of 360, term unit of 0, repayment frequency of 2 1`] = `
+InstallmentLoanRepayment {
+  "installmentRepayments": [
+    Repayment {
+      "interest": 10,
+      "principal": 100,
+    },
+  ],
+  "interest": 10,
+  "principal": 100,
+}
+`;
+
+exports[`EvenTotalLoan > calculateInterest with rate type of 1, term of 1, term unit of 2, repayment frequency of 2 1`] = `
+InstallmentLoanRepayment {
+  "installmentRepayments": [
+    Repayment {
+      "interest": 120.00000000000001,
+      "principal": 100.00000000000001,
+    },
+  ],
+  "interest": 120.00000000000001,
+  "principal": 100.00000000000001,
+}
+`;
+
+exports[`EvenTotalLoan > calculateInterest with rate type of 1, term of 12, term unit of 1, repayment frequency of 2 1`] = `
+InstallmentLoanRepayment {
+  "installmentRepayments": [
+    Repayment {
+      "interest": 120.00000000000001,
+      "principal": 100.00000000000001,
+    },
+  ],
+  "interest": 120.00000000000001,
+  "principal": 100.00000000000001,
+}
+`;
+
+exports[`EvenTotalLoan > calculateInterest with rate type of 1, term of 360, term unit of 0, repayment frequency of 2 1`] = `
+InstallmentLoanRepayment {
+  "installmentRepayments": [
+    Repayment {
+      "interest": 120.00000000000001,
+      "principal": 100.00000000000001,
+    },
+  ],
+  "interest": 120.00000000000001,
+  "principal": 100.00000000000001,
+}
+`;
+
+exports[`EvenTotalLoan > calculateInterest with rate type of 2, term of 1, term unit of 2, repayment frequency of 2 1`] = `
+InstallmentLoanRepayment {
+  "installmentRepayments": [
+    Repayment {
+      "interest": 10,
+      "principal": 99.9999999999999,
+    },
+  ],
+  "interest": 10,
+  "principal": 99.9999999999999,
+}
+`;
+
+exports[`EvenTotalLoan > calculateInterest with rate type of 2, term of 12, term unit of 1, repayment frequency of 2 1`] = `
+InstallmentLoanRepayment {
+  "installmentRepayments": [
+    Repayment {
+      "interest": 10,
+      "principal": 99.9999999999999,
+    },
+  ],
+  "interest": 10,
+  "principal": 99.9999999999999,
+}
+`;
+
+exports[`EvenTotalLoan > calculateInterest with rate type of 2, term of 360, term unit of 0, repayment frequency of 2 1`] = `
+InstallmentLoanRepayment {
+  "installmentRepayments": [
+    Repayment {
+      "interest": 10,
+      "principal": 99.9999999999999,
+    },
+  ],
+  "interest": 10,
+  "principal": 99.9999999999999,
+}
+`;
+
+exports[`InterestOnlyOnInstallmentLoan > calculateInterest with rate type of 1, term of 1, term unit of 2, repayment frequency of 2 1`] = `
+InstallmentLoanRepayment {
+  "installmentRepayments": [
+    Repayment {
+      "interest": 120.00000000000001,
+      "principal": 100,
+    },
+  ],
+  "interest": 120.00000000000001,
+  "principal": 100,
+}
+`;
+
+exports[`InterestOnlyOnInstallmentLoan > calculateInterest with rate type of 1, term of 12, term unit of 1, repayment frequency of 2 1`] = `
+InstallmentLoanRepayment {
+  "installmentRepayments": [
+    Repayment {
+      "interest": 120.00000000000001,
+      "principal": 100,
+    },
+  ],
+  "interest": 120.00000000000001,
+  "principal": 100,
+}
+`;
+
+exports[`InterestOnlyOnInstallmentLoan > calculateInterest with rate type of 1, term of 360, term unit of 0, repayment frequency of 2 1`] = `
+InstallmentLoanRepayment {
+  "installmentRepayments": [
+    Repayment {
+      "interest": 120.00000000000001,
+      "principal": 100,
+    },
+  ],
+  "interest": 120.00000000000001,
+  "principal": 100,
+}
+`;
+
+exports[`InterestOnlyOnInstallmentLoan > calculateInterest with rate type of 2, term of 1, term unit of 2, repayment frequency of 2 1`] = `
+InstallmentLoanRepayment {
+  "installmentRepayments": [
+    Repayment {
+      "interest": 10,
+      "principal": 100,
+    },
+  ],
+  "interest": 10,
+  "principal": 100,
+}
+`;
+
+exports[`InterestOnlyOnInstallmentLoan > calculateInterest with rate type of 2, term of 12, term unit of 1, repayment frequency of 2 1`] = `
+InstallmentLoanRepayment {
+  "installmentRepayments": [
+    Repayment {
+      "interest": 10,
+      "principal": 100,
+    },
+  ],
+  "interest": 10,
+  "principal": 100,
+}
+`;
+
+exports[`InterestOnlyOnInstallmentLoan > calculateInterest with rate type of 2, term of 360, term unit of 0, repayment frequency of 2 1`] = `
+InstallmentLoanRepayment {
+  "installmentRepayments": [
+    Repayment {
+      "interest": 10,
+      "principal": 100,
+    },
+  ],
+  "interest": 10,
+  "principal": 100,
+}
+`;
+
+exports[`LumpSumLoan > calculateInterest with rate type of 0 and term unit of 0 1`] = `
+Repayment {
+  "interest": 10,
+  "principal": 100,
+}
+`;
+
+exports[`LumpSumLoan > calculateInterest with rate type of 0 and term unit of 1 1`] = `
+Repayment {
+  "interest": 300,
+  "principal": 100,
+}
+`;
+
+exports[`LumpSumLoan > calculateInterest with rate type of 0 and term unit of 2 1`] = `
+Repayment {
+  "interest": 3600,
+  "principal": 100,
+}
+`;
+
+exports[`LumpSumLoan > calculateInterest with rate type of 1 and term unit of 0 1`] = `
+Repayment {
+  "interest": 0.33333333333333337,
+  "principal": 100,
+}
+`;
+
+exports[`LumpSumLoan > calculateInterest with rate type of 1 and term unit of 1 1`] = `
+Repayment {
+  "interest": 10,
+  "principal": 100,
+}
+`;
+
+exports[`LumpSumLoan > calculateInterest with rate type of 1 and term unit of 2 1`] = `
+Repayment {
+  "interest": 120.00000000000001,
+  "principal": 100,
+}
+`;
+
+exports[`LumpSumLoan > calculateInterest with rate type of 2 and term unit of 0 1`] = `
+Repayment {
+  "interest": 0.027777777777777776,
+  "principal": 100,
+}
+`;
+
+exports[`LumpSumLoan > calculateInterest with rate type of 2 and term unit of 1 1`] = `
+Repayment {
+  "interest": 0.8333333333333334,
+  "principal": 100,
+}
+`;
+
+exports[`LumpSumLoan > calculateInterest with rate type of 2 and term unit of 2 1`] = `
+Repayment {
+  "interest": 10,
+  "principal": 100,
+}
+`;
