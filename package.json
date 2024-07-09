@@ -1,7 +1,7 @@
 {
   "name": "@crazyorr/loan",
   "version": "1.0.0",
-  "description": "Interest calculation for loans",
+  "description": "Interest calculation of loans",
   "main": "./dist/loan.js",
   "module": "./dist/loan.mjs",
   "types": "./dist/loan.d.ts",
