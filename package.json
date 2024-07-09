@@ -33,7 +33,7 @@
     "email": "wanglei021212@gmail.com",
     "url": "https://github.com/CrazyOrr"
   },
-  "license": "MIT",
+  "license": "ISC",
   "scripts": {
     "dev": "vite --host",
     "build": "rimraf dist && tsc && vite build && dts-bundle-generator --config ./dts-bundle-generator.config.ts",
