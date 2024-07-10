@@ -1,4 +1,4 @@
-# loan
+# loan.js
 
 A JavaScript library for interest calculation of loans.
 

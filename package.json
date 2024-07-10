@@ -17,10 +17,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/CrazyOrr/loan-js.git"
+    "url": "https://github.com/CrazyOrr/loan.js.git"
   },
   "bugs": {
-    "url": "https://github.com/CrazyOrr/loan-js/issues"
+    "url": "https://github.com/CrazyOrr/loan.js/issues"
   },
   "homepage": "https://ic.yolo.blue/",
   "keywords": [
