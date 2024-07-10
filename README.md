@@ -95,6 +95,7 @@ The starter contains the following scripts:
 - `format:scripts` - format `.ts`, `.html` and `.json` files with prettier
 - `format:styles` - format `.cs` and `.scss` files with stylelint
 - `format` - format all with prettier and stylelint
+- `spelling` - check spellings with cspell
 - `prepare` - script for setting up husky pre-commit hook
 - `uninstall-husky` - script for removing husky from repository
 
