@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.0 (2025-04-19)
+
+- build: change tsconfig compilerOptions.target to `ES2020`
+
 ## 1.0.1 (2024-07-10)
 
 - build: set up [GitHub Actions to publish to npm](https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages)
