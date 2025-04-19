@@ -1,6 +1,2 @@
-.history
+package-lock.json
 .husky
-.vscode
-coverage
-dist
-node_modules
