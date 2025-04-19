@@ -1,14 +1,18 @@
-import globals from "globals";
-import pluginJs from "@eslint/js";
-import tsEslint from "typescript-eslint";
+import { includeIgnoreFile } from "@eslint/compat";
+import eslint from "@eslint/js";
 import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
+import { defineConfig, globalIgnores } from "eslint/config";
+import globals from "globals";
+import { fileURLToPath } from "node:url";
+import tsEslint from "typescript-eslint";
 
-export default [
-  {
-    ignores: [".husky/*", ".vscode/*", "coverage/*", "demo/*.js", "dist/*"],
-  },
+const gitignorePath = fileURLToPath(new URL(".gitignore", import.meta.url));
+
+export default defineConfig(
+  includeIgnoreFile(gitignorePath),
+  globalIgnores(["demo/*.js"]),
   { languageOptions: { globals: { ...globals.browser, ...globals.node } } },
-  pluginJs.configs.recommended,
-  ...tsEslint.configs.recommended,
-  eslintPluginPrettierRecommended,
-];
+  eslint.configs.recommended,
+  tsEslint.configs.recommended,
+  eslintPluginPrettierRecommended
+);
