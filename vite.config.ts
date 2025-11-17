@@ -1,4 +1,4 @@
-/// <reference types="vitest" />
+/// <reference types="vitest/config" />
 import path from "path";
 import { defineConfig } from "vite";
 import packageJson from "./package.json";
@@ -13,7 +13,7 @@ const getPackageNameCamelCase = () => {
   }
 };
 
-module.exports = defineConfig({
+export default defineConfig({
   base: "./",
   build: {
     outDir: "./dist",
@@ -26,7 +26,7 @@ module.exports = defineConfig({
   test: {
     coverage: {
       include: ["src/**"],
-      exclude: ["src/index.ts"],
+      exclude: [],
     },
   },
   resolve: {
