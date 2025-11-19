@@ -11,9 +11,7 @@
     "default": "./dist/loan.js"
   },
   "files": [
-    "dist",
-    "README.md",
-    "LICENSE"
+    "dist"
   ],
   "repository": {
     "type": "git",
