@@ -7,7 +7,7 @@ const getPackageNameCamelCase = () => {
   try {
     return packageJson.name
       .replace(/@.+\//, "")
-      .replace(/-./g, char => char[1].toUpperCase());
+      .replace(/-./g, (char) => char[1].toUpperCase());
   } catch {
     throw new Error("Name property in package.json is missing.");
   }
