@@ -2,6 +2,7 @@
   "recommendations": [
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
+    "EditorConfig.EditorConfig",
     "streetsidesoftware.code-spell-checker",
     "Gruntfuggly.todo-tree",
     "vitest.explorer"

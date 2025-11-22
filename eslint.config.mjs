@@ -1,6 +1,6 @@
 import { includeIgnoreFile } from "@eslint/compat";
 import eslint from "@eslint/js";
-import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
+import eslintConfigPrettier from "eslint-config-prettier/flat";
 import { defineConfig, globalIgnores } from "eslint/config";
 import globals from "globals";
 import { fileURLToPath } from "node:url";
@@ -14,5 +14,5 @@ export default defineConfig(
   { languageOptions: { globals: { ...globals.browser, ...globals.node } } },
   eslint.configs.recommended,
   tsEslint.configs.recommended,
-  eslintPluginPrettierRecommended
+  eslintConfigPrettier
 );
