@@ -40,7 +40,7 @@
     "lint": "eslint .",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
-    "spelling": "cspell \"**\"",
+    "check-spelling": "cspell \"**\"",
     "prepare": "husky",
     "uninstall-husky": "npm uninstall husky --no-save && git config --unset core.hooksPath && npx rimraf .husky"
   },
