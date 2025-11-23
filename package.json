@@ -11,7 +11,7 @@
     "default": "./dist/loan.js"
   },
   "files": [
-    "dist"
+    "dist/"
   ],
   "repository": {
     "type": "git",
