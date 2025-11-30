@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.1 (2025-11-30)
+
+- feat: complete API documentation using TSDoc format
+
 ## 1.1.0 (2025-04-19)
 
 - build: change tsconfig compilerOptions.target to `ES2020`
