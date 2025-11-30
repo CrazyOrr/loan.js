@@ -2,21 +2,29 @@ import { IllegalArgumentException } from "./error";
 
 /**
  * 贷款
+ *
+ * @public
  */
 export abstract class Loan {
   /**
    * 构造贷款
-   * @param principalAmount 本金金额
-   * @param rate 利率
-   * @param rateType 利率类型(日/月/年)
-   * @param term 期限
-   * @param termUnit 期限单位(日/月/年)
+   *
+   * @param principalAmount - 本金金额
+   * @param rate - 利率
+   * @param rateType - 利率类型(日/月/年)
+   * @param term - 期限
+   * @param termUnit - 期限单位(日/月/年)
    */
   protected constructor(
+    /** 本金金额 */
     protected principalAmount: number,
+    /** 利率 */
     protected rate: number,
+    /** 利率类型(日/月/年) */
     protected rateType: Frequency,
+    /** 期限 */
     protected term: number,
+    /** 期限单位(日/月/年) */
     protected termUnit: TermUnit
   ) {
     if (!Loan.validatePrincipalAmount(principalAmount)) {
@@ -32,11 +40,16 @@ export abstract class Loan {
 
   /**
    * 计算利息
+   *
+   * @returns 还款
    */
   abstract calculateInterest(): Repayment;
 
   /**
    * 验证本金金额
+   *
+   * @param principalAmount - 本金金额
+   * @returns 是否有效
    */
   static validatePrincipalAmount(principalAmount: number) {
     return principalAmount > 0;
@@ -44,6 +57,9 @@ export abstract class Loan {
 
   /**
    * 验证利率
+   *
+   * @param rate - 利率
+   * @returns 是否有效
    */
   static validateRate(rate: number) {
     return rate > 0;
@@ -51,24 +67,29 @@ export abstract class Loan {
 
   /**
    * 验证期限
+   *
+   * @param term - 期限
+   * @returns 是否有效
    */
   static validateTerm(term: number) {
     return term > 0;
   }
 }
 
-// noinspection JSUnusedGlobalSymbols
 /**
  * 到期还本付息贷款
+ *
+ * @public
  */
 export class LumpSumLoan extends Loan {
   /**
    * 构造到期还本付息贷款
-   * @param principalAmount 本金金额
-   * @param rate 利率
-   * @param rateType 利率类型(日/月/年)
-   * @param term 期限
-   * @param termUnit 期限单位(日/月/年)
+   *
+   * @param principalAmount - 本金金额
+   * @param rate - 利率
+   * @param rateType - 利率类型(日/月/年)
+   * @param term - 期限
+   * @param termUnit - 期限单位(日/月/年)
    */
   constructor(
     principalAmount: number,
@@ -80,6 +101,11 @@ export class LumpSumLoan extends Loan {
     super(principalAmount, rate, rateType, term, termUnit);
   }
 
+  /**
+   * {@inheritDoc Loan.calculateInterest}
+   *
+   * @override
+   */
   calculateInterest(): Repayment {
     let convertToRateType;
     switch (this.termUnit) {
@@ -104,16 +130,19 @@ export class LumpSumLoan extends Loan {
 
 /**
  * 分期贷款
+ *
+ * @public
  */
-abstract class InstallmentLoan extends Loan {
+export abstract class InstallmentLoan extends Loan {
   /**
    * 构造分期贷款
-   * @param principalAmount 本金金额
-   * @param rate 利率
-   * @param rateType 利率类型(日/月/年)
-   * @param term 期限
-   * @param termUnit 期限单位(日/月/年)
-   * @param repaymentFrequency 还款频率(日/月/年)
+   *
+   * @param principalAmount - 本金金额
+   * @param rate - 利率
+   * @param rateType - 利率类型(日/月/年)
+   * @param term - 期限
+   * @param termUnit - 期限单位(日/月/年)
+   * @param repaymentFrequency - 还款频率(日/月/年)
    */
   protected constructor(
     principalAmount: number,
@@ -146,6 +175,8 @@ abstract class InstallmentLoan extends Loan {
 
   /**
    * 分期期数
+   *
+   * @returns 分期期数
    */
   protected installmentNumber(): number {
     let number;
@@ -163,25 +194,29 @@ abstract class InstallmentLoan extends Loan {
 
   /**
    * 分期每期利率
+   *
+   * @returns 分期每期利率
    */
   protected installmentInterestRate(): number {
     return convertRate(this.rate, this.rateType, this.repaymentFrequency);
   }
 }
 
-// noinspection JSUnusedGlobalSymbols
 /**
  * 等额本息贷款
+ *
+ * @public
  */
 export class EvenTotalLoan extends InstallmentLoan {
   /**
    * 构造等额本息贷款
-   * @param principalAmount 本金金额
-   * @param rate 利率
-   * @param rateType 利率类型(日/月/年)
-   * @param term 期限
-   * @param termUnit 期限单位(日/月/年)
-   * @param repaymentFrequency 还款频率(日/月/年)
+   *
+   * @param principalAmount - 本金金额
+   * @param rate - 利率
+   * @param rateType - 利率类型(日/月/年)
+   * @param term - 期限
+   * @param termUnit - 期限单位(日/月/年)
+   * @param repaymentFrequency - 还款频率(日/月/年)
    */
   constructor(
     principalAmount: number,
@@ -194,6 +229,11 @@ export class EvenTotalLoan extends InstallmentLoan {
     super(principalAmount, rate, rateType, term, termUnit, repaymentFrequency);
   }
 
+  /**
+   * {@inheritDoc Loan.calculateInterest}
+   *
+   * @override
+   */
   calculateInterest(): Repayment {
     const installmentRate = this.installmentInterestRate();
     const installmentNumber = this.installmentNumber();
@@ -215,19 +255,21 @@ export class EvenTotalLoan extends InstallmentLoan {
   }
 }
 
-// noinspection JSUnusedGlobalSymbols
 /**
  * 等额本金贷款
+ *
+ * @public
  */
 export class EvenPrincipalLoan extends InstallmentLoan {
   /**
    * 构造等额本金贷款
-   * @param principalAmount 本金金额
-   * @param rate 利率
-   * @param rateType 利率类型(日/月/年)
-   * @param term 期限
-   * @param termUnit 期限单位(日/月/年)
-   * @param repaymentFrequency 还款频率(日/月/年)
+   *
+   * @param principalAmount - 本金金额
+   * @param rate - 利率
+   * @param rateType - 利率类型(日/月/年)
+   * @param term - 期限
+   * @param termUnit - 期限单位(日/月/年)
+   * @param repaymentFrequency - 还款频率(日/月/年)
    */
   constructor(
     principalAmount: number,
@@ -240,6 +282,11 @@ export class EvenPrincipalLoan extends InstallmentLoan {
     super(principalAmount, rate, rateType, term, termUnit, repaymentFrequency);
   }
 
+  /**
+   * {@inheritDoc Loan.calculateInterest}
+   *
+   * @override
+   */
   calculateInterest(): Repayment {
     const installmentRate = this.installmentInterestRate();
     const installmentNumber = this.installmentNumber();
@@ -257,19 +304,21 @@ export class EvenPrincipalLoan extends InstallmentLoan {
   }
 }
 
-// noinspection JSUnusedGlobalSymbols
 /**
  * 先息后本(按期付息)贷款
+ *
+ * @public
  */
 export class InterestOnlyOnInstallmentLoan extends InstallmentLoan {
   /**
    * 构造先息后本(按期付息)贷款
-   * @param principalAmount 本金金额
-   * @param rate 利率
-   * @param rateType 利率类型(日/月/年)
-   * @param term 期限
-   * @param termUnit 期限单位(日/月/年)
-   * @param repaymentFrequency 还款频率(日/月/年)
+   *
+   * @param principalAmount - 本金金额
+   * @param rate - 利率
+   * @param rateType - 利率类型(日/月/年)
+   * @param term - 期限
+   * @param termUnit - 期限单位(日/月/年)
+   * @param repaymentFrequency - 还款频率(日/月/年)
    */
   constructor(
     principalAmount: number,
@@ -282,6 +331,11 @@ export class InterestOnlyOnInstallmentLoan extends InstallmentLoan {
     super(principalAmount, rate, rateType, term, termUnit, repaymentFrequency);
   }
 
+  /**
+   * {@inheritDoc Loan.calculateInterest}
+   *
+   * @override
+   */
   calculateInterest(): Repayment {
     const installmentRate = this.installmentInterestRate();
     const installmentNumber = this.installmentNumber();
@@ -302,22 +356,32 @@ export class InterestOnlyOnInstallmentLoan extends InstallmentLoan {
 
 /**
  * 1年12个月
+ *
+ * @public
  */
 export const MONTHS_IN_ONE_YEAR: number = 12;
 /**
  * 1个月30天
+ *
+ * @public
  */
 export const DAYS_IN_ONE_MONTH: number = 30;
 /**
  * 1年360天
+ *
+ * @public
  */
 export const DAYS_IN_ONE_YEAR: number = MONTHS_IN_ONE_YEAR * DAYS_IN_ONE_MONTH;
 
 /**
  * 根据频率转换利率
- * @param rate 利率
- * @param from 转换前的频率
- * @param to 转换后的频率
+ *
+ * @param rate - 利率
+ * @param from - 转换前的频率
+ * @param to - 转换后的频率
+ * @returns 转换后的利率
+ *
+ * @public
  */
 export function convertRate(rate: number, from: Frequency, to: Frequency) {
   let converted = rate;
@@ -358,9 +422,13 @@ export function convertRate(rate: number, from: Frequency, to: Frequency) {
 
 /**
  * 根据单位转换期限
- * @param num 数量
- * @param from 转换前的期限单位
- * @param to 转换后的期限单位
+ *
+ * @param num - 数量
+ * @param from - 转换前的期限单位
+ * @param to - 转换后的期限单位
+ * @returns 转换后的数量
+ *
+ * @public
  */
 export function convertTermUnit(
   num: number,
@@ -405,56 +473,67 @@ export function convertTermUnit(
 
 /**
  * 频率
+ *
+ * @public
  */
 export enum Frequency {
   /**
-   * 天
+   * 按天
    */
   DAILY,
   /**
-   * 月
+   * 按月
    */
   MONTHLY,
   /**
-   * 年
+   * 按年
    */
   YEARLY,
 }
 
 /**
  * 期限单位
+ *
+ * @public
  */
 export enum TermUnit {
   /**
-   * 天
+   * 单位：天
    */
   DAY,
   /**
-   * 月
+   * 单位：月
    */
   MONTH,
   /**
-   * 年
+   * 单位：年
    */
   YEAR,
 }
 
 /**
  * 还款
+ *
+ * @public
  */
 export class Repayment {
   /**
    * 构造还款
-   * @param principal 本金金额
-   * @param interest 利息金额
+   *
+   * @param principal - 本金金额
+   * @param interest - 利息金额
    */
   constructor(
+    /** 本金金额 */
     public principal: number = 0,
+    /** 利息金额 */
     public interest: number = 0
   ) {}
 
   /**
    * 本息总额
+   *
+   * @returns 本息总额
    */
   sum(): number {
     return this.principal + this.interest;
@@ -463,15 +542,19 @@ export class Repayment {
 
 /**
  * 分期贷款还款
+ *
+ * @public
  */
 export class InstallmentLoanRepayment extends Repayment {
   /**
    * 构造分期贷款还款
-   * @param installmentRepayments 分期还款
-   * @param principal 本金金额
-   * @param interest 利息金额
+   *
+   * @param installmentRepayments - 分期还款
+   * @param principal - 本金金额
+   * @param interest - 利息金额
    */
   constructor(
+    /** 分期还款 */
     public installmentRepayments: Repayment[],
     principal?: number,
     interest?: number
