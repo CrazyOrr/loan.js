@@ -12,5 +12,5 @@
   ],
   "dictionaries": ["project-words"],
   "useGitignore": true,
-  "ignorePaths": ["project-words.txt", "test/__snapshots__/**"]
+  "ignorePaths": ["project-words.txt", "test/__snapshots__/**", "etc/"]
 }

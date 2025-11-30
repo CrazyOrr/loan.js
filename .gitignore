@@ -7,12 +7,14 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-build
-dist
-dist-ssr
+node_modules/
+build/
+dist/
+dist-ssr/
+lib/
 *.local
-coverage
+coverage/
+temp/
 
 # Editor directories and files
 .history/*

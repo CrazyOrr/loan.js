@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "rootDir": ".",
     "paths": {
       "@/*": ["./src/*"],
       "@@/*": ["./*"]
@@ -10,11 +9,15 @@
     "module": "ESNext",
     "lib": ["ESNext", "DOM"],
     "moduleResolution": "Node",
+    "isolatedModules": true,
     "strict": true,
-    "sourceMap": true,
+    "declaration": true,
+    "sourceMap": false,
+    "declarationMap": true,
+    "outDir": "lib",
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "noEmit": true,
+    "noEmit": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
